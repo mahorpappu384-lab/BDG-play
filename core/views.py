@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 from django.db.models import Sum, Count
 from django.utils import timezone
+from rest_framework.permissions import AllowAny
 from django.db import transaction
 from decimal import Decimal
 import random
@@ -375,3 +376,12 @@ class ImageKitAuthParamsView(APIView):
         except Exception as e:
             print(f"ImageKit auth error: {str(e)}")
             return Response({"error": str(e)}, status=500)
+
+class HealthCheckView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({
+            "status": "ok",
+            "message": "Server is healthy 🚀"
+        }, status=status.HTTP_200_OK)
