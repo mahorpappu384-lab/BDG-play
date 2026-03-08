@@ -7,3 +7,4 @@ whitenoise
 Pillow
 imagekitio
 python-decouple
+django-cors-headers
