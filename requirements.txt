@@ -6,3 +6,4 @@ dj-database-url
 whitenoise
 Pillow
 imagekitio
+python-decouple
