@@ -1,6 +1,8 @@
 """
 Django settings for BDG_backend project.
 """
+import os
+import dj_database_url
 
 from pathlib import Path
 from decouple import config
@@ -8,6 +10,8 @@ from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -80,14 +84,19 @@ ASGI_APPLICATION = 'BDG_backend.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DATABASE_URL:
+    # Production (Render / Neon PostgreSQL)
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL)
     }
-    # Production में PostgreSQL या MySQL इस्तेमाल करें
-}
+else:
+    # Local device (SQLite)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation
