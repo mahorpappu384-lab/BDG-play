@@ -15,6 +15,7 @@ from .views import (
     RedeemGiftCodeView,
     AgencyStatsView,
     ImageKitAuthParamsView,
+    HealthCheckView,
 )
 
 urlpatterns = [
@@ -30,6 +31,7 @@ urlpatterns = [
     path('activity/claim-attendance/', ClaimAttendanceBonusView.as_view(), name='claim-attendance'),
     path('activity/redeem-gift/', RedeemGiftCodeView.as_view(), name='redeem-gift'),
     path('imagekit-auth-params/', ImageKitAuthParamsView.as_view(), name='imagekit-auth'),
+    path("health/", HealthCheckView.as_view()),
 
     # User & Wallet
     path('profile/', ProfileView.as_view(), name='profile'),
