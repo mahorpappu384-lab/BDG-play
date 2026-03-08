@@ -27,6 +27,7 @@ class WithdrawRequestSerializer(serializers.ModelSerializer):
 class PlayGameSerializer(serializers.Serializer):
     game_type = serializers.ChoiceField(choices=GameHistory.GAME_TYPES)
     bet_amount = serializers.DecimalField(max_digits=12, decimal_places=2, min_value=1)
+    choice     = serializers.CharField(required=False, allow_blank=True)
 
     def validate_bet_amount(self, value):
         settings = GameSettings.objects.first()

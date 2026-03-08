@@ -143,7 +143,6 @@ class PlayGameView(APIView):
                 result=result_str,
                 win_amount=win_amount,
                 is_win=win,
-                extra_data=extra_data
             )
 
         return Response({
